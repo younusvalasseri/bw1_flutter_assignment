@@ -1,7 +1,9 @@
 import 'package:bw1_flutter_assignment/screens/notifications_screen.dart';
 import 'package:bw1_flutter_assignment/widgets/category_tile.dart';
+import 'package:bw1_flutter_assignment/widgets/horizontal_store_list.dart';
 import 'package:bw1_flutter_assignment/widgets/promo_banner.dart';
 import 'package:bw1_flutter_assignment/widgets/section_title.dart';
+import 'package:bw1_flutter_assignment/widgets/vertical_store_list.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
 
@@ -86,14 +88,36 @@ class HomeScreen extends StatelessWidget {
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
               children: [
-                CategoryTile(title: "Food Delivery"),
-                CategoryTile(title: "Medicines"),
-                CategoryTile(title: "Pet Supplies"),
-                CategoryTile(title: "Gifts"),
-                CategoryTile(title: "Meat"),
-                CategoryTile(title: "Cosmetic"),
-                CategoryTile(title: "Stationery"),
-                CategoryTile(title: "Stores"),
+                CategoryTile(
+                  title: "Food Delivery",
+                  iconPath: "assets/food_delivery.png",
+                  discount: "15%",
+                ),
+                CategoryTile(
+                  title: "Medicines",
+                  iconPath: "assets/medicine.png",
+                  discount: "10%",
+                ),
+                CategoryTile(
+                  title: "Pet Supplies",
+                  iconPath: "assets/pet_supplies.png",
+                  discount: "10%",
+                ),
+                CategoryTile(title: "Gifts", iconPath: "assets/gifts.png"),
+                CategoryTile(title: "Meat", iconPath: "assets/meat.png"),
+                CategoryTile(
+                  title: "Cosmetic",
+                  iconPath: "assets/cosmetic.png",
+                ),
+                CategoryTile(
+                  title: "Stationery",
+                  iconPath: "assets/stationery.png",
+                ),
+                CategoryTile(
+                  title: "Stores",
+                  iconPath: "assets/stores.png",
+                  discount: "10%",
+                ),
               ],
             ),
             const SizedBox(height: 10),
@@ -113,7 +137,7 @@ class HomeScreen extends StatelessWidget {
               color: Colors.green.shade400,
             ),
             SectionTitle(title: "Trending"),
-            _horizontalStoreList(),
+            HorizontalStoreList(),
             PromoBanner(
               title: "Customer favourite\ntop supermarkets",
               buttonText: "Explore",
@@ -125,7 +149,7 @@ class HomeScreen extends StatelessWidget {
               color: Colors.green,
             ),
             SectionTitle(title: "Nearby stores"),
-            _verticalStoreList(),
+            VerticalStoreList(),
             const SizedBox(height: 20),
             Center(
               child: ElevatedButton(
@@ -154,92 +178,6 @@ class HomeScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Icon(Icons.person_outline),
             label: 'Account',
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget _horizontalStoreList() {
-    return SizedBox(
-      height: 150,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.only(left: 16),
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return _storeCard();
-        },
-      ),
-    );
-  }
-
-  Widget _verticalStoreList() {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      itemCount: 2,
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 10.0),
-          child: _storeCard(),
-        );
-      },
-    );
-  }
-
-  Widget _storeCard() {
-    return Container(
-      margin: const EdgeInsets.only(right: 10),
-      padding: const EdgeInsets.all(10),
-      decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade200),
-        borderRadius: BorderRadius.circular(10),
-      ),
-      width: 200,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                height: 40,
-                width: 40,
-                color: Colors.grey[300],
-                child: const Icon(Icons.image),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
-                      "Mithas Bhandar",
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "Sweets, North Indian",
-                      style: TextStyle(fontSize: 12),
-                    ),
-                    Text("6.4 kms | 45 mins", style: TextStyle(fontSize: 12)),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 5),
-          Row(
-            children: const [
-              Icon(Icons.star, color: Colors.orange, size: 16),
-              SizedBox(width: 5),
-              Text("4.1", style: TextStyle(fontSize: 12)),
-              Spacer(),
-              Text(
-                "45 mins",
-                style: TextStyle(fontSize: 12, color: Colors.orange),
-              ),
-            ],
           ),
         ],
       ),

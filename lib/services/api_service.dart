@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:flutter/foundation.dart';
 import '../models/notification_model.dart';
 
 class ApiService {
@@ -9,17 +8,28 @@ class ApiService {
 
   static Future<List<NotificationModel>> fetchNotifications() async {
     final response = await http.get(Uri.parse(url));
+
     if (response.statusCode == 200) {
-      return compute(parseNotifications, response.body);
+      final Map<String, dynamic> jsonBody = json.decode(response.body);
+      final List<dynamic> data = jsonBody['data'];
+
+      return data
+          .map(
+            (item) => NotificationModel.fromJson(item as Map<String, dynamic>),
+          )
+          .toList();
     } else {
       throw Exception('Failed to load notifications');
     }
   }
 
+  // Optional and now corrected
   static List<NotificationModel> parseNotifications(String responseBody) {
-    final parsed = json.decode(responseBody).cast<Map<String, dynamic>>();
+    final List<dynamic> parsed = json.decode(responseBody);
     return parsed
-        .map<NotificationModel>((json) => NotificationModel.fromJson(json))
+        .map<NotificationModel>(
+          (json) => NotificationModel.fromJson(json as Map<String, dynamic>),
+        )
         .toList();
   }
 }

@@ -24,9 +24,17 @@ class NotificationsScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = data[index];
               return ListTile(
+                leading: Image.asset(
+                  'assets/${item.image}',
+                  width: 40,
+                  height: 40,
+                  errorBuilder:
+                      (context, error, stackTrace) =>
+                          const Icon(Icons.notifications),
+                ),
                 title: Text(item.title),
-                subtitle: Text(item.description),
-                trailing: Text(item.date),
+                subtitle: Text(item.body),
+                trailing: Text(item.timestamp.split('T').first),
               );
             },
           );
