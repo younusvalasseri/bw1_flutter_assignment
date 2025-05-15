@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SectionTitle extends StatelessWidget {
   final String title;
@@ -13,9 +14,21 @@ class SectionTitle extends StatelessWidget {
         children: [
           Text(
             title,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            style: GoogleFonts.quicksand(
+              textStyle: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w600,
+                color: Colors.black87,
+              ),
+            ),
           ),
-          Text("See all", style: TextStyle(color: Colors.green.shade600)),
+          Text(
+            "See all",
+            style: TextStyle(
+              color: Colors.green.shade600,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ],
       ),
     );

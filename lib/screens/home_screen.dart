@@ -1,11 +1,16 @@
+import 'package:bw1_flutter_assignment/screens/account_page.dart';
 import 'package:bw1_flutter_assignment/screens/notifications_screen.dart';
 import 'package:bw1_flutter_assignment/widgets/category_tile.dart';
+import 'package:bw1_flutter_assignment/widgets/craze_deals.dart';
 import 'package:bw1_flutter_assignment/widgets/horizontal_store_list.dart';
+import 'package:bw1_flutter_assignment/widgets/nearby_stores.dart';
 import 'package:bw1_flutter_assignment/widgets/promo_banner.dart';
+import 'package:bw1_flutter_assignment/widgets/refer_earn.dart';
 import 'package:bw1_flutter_assignment/widgets/section_title.dart';
-import 'package:bw1_flutter_assignment/widgets/vertical_store_list.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:google_fonts/google_fonts.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -19,7 +24,7 @@ class HomeScreen extends StatelessWidget {
         elevation: 0,
         title: Row(
           children: [
-            const Icon(Icons.location_on, color: Colors.green),
+            const Icon(Icons.location_on, color: Color(0xFF3CE27E)),
             const SizedBox(width: 5),
             const Text(
               "ABCD, New Delhi",
@@ -28,32 +33,7 @@ class HomeScreen extends StatelessWidget {
             const Icon(Icons.keyboard_arrow_down, color: Colors.black),
           ],
         ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.local_offer_outlined, color: Colors.orange),
-            onPressed: () {},
-          ),
-          badges.Badge(
-            badgeContent: const Text(
-              '2',
-              style: TextStyle(color: Colors.white),
-            ),
-            child: IconButton(
-              icon: const Icon(
-                Icons.notifications_none_outlined,
-                color: Colors.red,
-              ),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const NotificationsScreen(),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+        automaticallyImplyLeading: false,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -61,14 +41,57 @@ class HomeScreen extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  hintText: 'Search for products/stores',
-                  prefixIcon: const Icon(Icons.search),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey[200], // Light grey background
+                        borderRadius: BorderRadius.circular(6), // Small curve
+                      ),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: 'Search for products/stores',
+                          suffixIcon: Icon(
+                            LucideIcons.search,
+                            color: Color(0xFF3CE27E),
+                          ),
+                          border: InputBorder.none,
+                          contentPadding: const EdgeInsets.all(12),
+                        ),
+                      ),
+                    ),
                   ),
-                ),
+                  const SizedBox(width: 10),
+                  badges.Badge(
+                    badgeContent: const Text(
+                      '2',
+                      style: TextStyle(color: Colors.white, fontSize: 10),
+                    ),
+                    position: badges.BadgePosition.topEnd(top: 3, end: 6),
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.notifications_none_outlined,
+                        color: Colors.red,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const NotificationsScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.local_offer_outlined,
+                      color: Colors.orange,
+                    ),
+                    onPressed: () {},
+                  ),
+                ],
               ),
             ),
             const SizedBox(height: 20),
@@ -86,22 +109,23 @@ class HomeScreen extends StatelessWidget {
               physics: const NeverScrollableScrollPhysics(),
               crossAxisCount: 4,
               crossAxisSpacing: 10,
-              mainAxisSpacing: 10,
+              mainAxisSpacing: 20,
+              childAspectRatio: .65,
               children: [
                 CategoryTile(
                   title: "Food Delivery",
                   iconPath: "assets/food_delivery.png",
-                  discount: "15%",
+                  discount: "10% Off",
                 ),
                 CategoryTile(
                   title: "Medicines",
                   iconPath: "assets/medicine.png",
-                  discount: "10%",
+                  discount: "10% Off",
                 ),
                 CategoryTile(
                   title: "Pet Supplies",
                   iconPath: "assets/pet_supplies.png",
-                  discount: "10%",
+                  discount: "10% Off  ",
                 ),
                 CategoryTile(title: "Gifts", iconPath: "assets/gifts.png"),
                 CategoryTile(title: "Meat", iconPath: "assets/meat.png"),
@@ -116,46 +140,150 @@ class HomeScreen extends StatelessWidget {
                 CategoryTile(
                   title: "Stores",
                   iconPath: "assets/stores.png",
-                  discount: "10%",
+                  discount: "10% Off",
                 ),
               ],
             ),
             const SizedBox(height: 10),
             Center(
-              child: Text(
-                "More",
-                style: TextStyle(
-                  color: Colors.green,
-                  fontWeight: FontWeight.bold,
+              child: GestureDetector(
+                onTap: () {
+                  // Navigate to more categories screen or expand list
+                },
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const [
+                    Text(
+                      "More",
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    Icon(
+                      Icons.keyboard_arrow_down_outlined,
+                      size: 24,
+                      color: Colors.green,
+                    ),
+                  ],
                 ),
               ),
             ),
+
             const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                "Top picks for you",
+                style: GoogleFonts.quicksand(
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            ),
             PromoBanner(
-              title: "DISCOUNT\n25% ALL FRUITS",
+              title: "DISCOUNT\n25% ALL\nFRUITS",
               buttonText: "CHECK NOW",
               color: Colors.green.shade400,
+              imagePath: "assets/fruit_Ice_cream.png",
             ),
+
             SectionTitle(title: "Trending"),
             HorizontalStoreList(),
-            PromoBanner(
-              title: "Customer favourite\ntop supermarkets",
-              buttonText: "Explore",
-              color: Colors.black,
+            HorizontalStoreList(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                "Craze deals",
+                style: GoogleFonts.quicksand(
+                  textStyle: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
             ),
-            PromoBanner(
-              title: "Refer & Earn\nInvite your friends & earn 15% off",
-              buttonText: "",
-              color: Colors.green,
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  CrazeDealsCard(
+                    title: "Customer favourite\ntop supermarkets",
+                    imagePath:
+                        "assets/vegitables.png", // Use your uploaded asset here
+                    onTap: () {
+                      // Add your action here
+                    },
+                  ),
+                  CrazeDealsCard(
+                    title: "Exciting pet\naccessories",
+                    imagePath: "assets/vegitables.png",
+                    onTap: () {},
+                  ),
+                ],
+              ),
+            ),
+            ReferEarnCard(
+              onTap: () {
+                // Navigate to referral screen or show dialog
+              },
+              imagePath: "assets/refer_gift.png",
             ),
             SectionTitle(title: "Nearby stores"),
-            VerticalStoreList(),
-            const SizedBox(height: 20),
+            NearbyStoreCard(
+              imagePath: 'assets/bread.png',
+              storeName: 'Freshly Baker',
+              cuisine: 'Sweets, North Indian',
+              address: 'Site No - 1',
+              distanceKm: 6.4,
+              rating: 4.1,
+              deliveryTime: '45 mins',
+              badgeLabel: 'Top Store',
+              promoText: 'Upto 10% OFF',
+              itemsText: '3400+ items available',
+            ),
+
+            NearbyStoreCard(
+              imagePath: 'assets/bread.png',
+              storeName: 'Freshly Baker',
+              cuisine: 'Sweets, North Indian',
+              address: 'Site No - 1',
+              distanceKm: 6.4,
+              rating: 4.1,
+              deliveryTime: '45 mins',
+              badgeLabel: 'Top Store',
+              promoText: 'Upto 10% OFF',
+              itemsText: '3400+ items available',
+            ),
+            const SizedBox(height: 10),
             Center(
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                child: const Text("View all stores"),
+              child: TextButton(
+                onPressed: () {
+                  // Your action here
+                },
+                style: TextButton.styleFrom(
+                  backgroundColor: const Color(0xFF3CE27E),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 100,
+                    vertical: 12,
+                  ),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  'View all stores',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 80),
@@ -163,6 +291,16 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: 0,
+        onTap: (index) {
+          if (index == 3) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const AccountPage()),
+            );
+          }
+          // You can handle other index navigations here as needed
+        },
         selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
         items: const [

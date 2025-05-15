@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class CategoryTile extends StatelessWidget {
   final String title;
@@ -19,28 +20,50 @@ class CategoryTile extends StatelessWidget {
         Stack(
           children: [
             Container(
-              height: 50,
-              width: 50,
+              height: 75,
+              width: 75,
               decoration: BoxDecoration(
-                color: Colors.grey[200],
+                color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black12,
+                    blurRadius: 4,
+                    offset: Offset(2, 2),
+                  ),
+                ],
               ),
-              child:
-                  iconPath != null && iconPath!.isNotEmpty
-                      ? Image.asset(iconPath!, fit: BoxFit.cover)
-                      : const Icon(Icons.image),
+              child: Center(
+                child: SizedBox(
+                  height: 50,
+                  width: 50,
+                  child:
+                      iconPath != null && iconPath!.isNotEmpty
+                          ? Image.asset(
+                            iconPath!,
+                            fit:
+                                BoxFit
+                                    .contain, // use BoxFit.cover if you want to crop
+                          )
+                          : const Icon(Icons.image),
+                ),
+              ),
             ),
+
             if (discount != null && discount!.isNotEmpty)
               Positioned(
-                top: -2,
-                left: -2,
+                top: 0,
+                right: 0,
                 child: Container(
+                  height: 17,
+                  width: 45,
                   padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
                     color: Colors.purple,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
+                    textAlign: TextAlign.center,
                     discount!,
                     style: const TextStyle(color: Colors.white, fontSize: 10),
                   ),
@@ -52,7 +75,13 @@ class CategoryTile extends StatelessWidget {
         Text(
           title,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 12),
+          style: GoogleFonts.quicksand(
+            textStyle: const TextStyle(
+              fontSize: 15,
+              fontWeight: FontWeight.w600,
+              color: Colors.black87,
+            ),
+          ),
         ),
       ],
     );
