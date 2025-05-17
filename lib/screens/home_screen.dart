@@ -1,8 +1,10 @@
 import 'package:bw1_flutter_assignment/routes/app_routes.dart';
+import 'package:bw1_flutter_assignment/widgets/bottom_navigation_bar.dart';
 import 'package:bw1_flutter_assignment/widgets/category_tile.dart';
 import 'package:bw1_flutter_assignment/widgets/craze_deals.dart';
+import 'package:bw1_flutter_assignment/widgets/home_search_bar.dart';
 import 'package:bw1_flutter_assignment/widgets/horizontal_store_list.dart';
-import 'package:bw1_flutter_assignment/widgets/location_provider.dart';
+import 'package:bw1_flutter_assignment/widgets/main_appbar.dart';
 import 'package:bw1_flutter_assignment/widgets/nearby_stores.dart';
 import 'package:bw1_flutter_assignment/widgets/promo_banner.dart';
 import 'package:bw1_flutter_assignment/widgets/refer_earn.dart';
@@ -18,51 +20,9 @@ class HomeScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final locationAsyncValue = ref.watch(locationProvider);
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            const Icon(Icons.location_on, color: Color(0xFF3CE27E)),
-            const SizedBox(width: 5),
-
-            locationAsyncValue.when(
-              data:
-                  (location) => Text(
-                    location,
-                    overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-              loading:
-                  () => const Text(
-                    "Fetching location...",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-              error:
-                  (err, _) => const Text(
-                    "Location error",
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                  ),
-            ),
-            IconButton(
-              icon: const Icon(
-                Icons.keyboard_arrow_down_outlined,
-                color: Color(0xFF3CE27E),
-              ),
-              onPressed: () {},
-            ),
-          ],
-        ),
-      ),
+      appBar: const MainAppBar(),
 
       body: SingleChildScrollView(
         child: Column(
@@ -70,53 +30,7 @@ class HomeScreen extends ConsumerWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.grey[200], // Light grey background
-                        borderRadius: BorderRadius.circular(6), // Small curve
-                      ),
-                      child: TextField(
-                        decoration: InputDecoration(
-                          hintText: 'Search for products/stores',
-                          suffixIcon: Icon(
-                            LucideIcons.search,
-                            color: Color(0xFF3CE27E),
-                          ),
-                          border: InputBorder.none,
-                          contentPadding: const EdgeInsets.all(12),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: 10),
-                  badges.Badge(
-                    badgeContent: const Text(
-                      '2',
-                      style: TextStyle(color: Colors.white, fontSize: 10),
-                    ),
-                    position: badges.BadgePosition.topEnd(top: 3, end: 6),
-                    child: IconButton(
-                      icon: const Icon(
-                        Icons.notifications_none_outlined,
-                        color: Colors.red,
-                      ),
-                      onPressed: () {
-                        Navigator.pushNamed(context, AppRoutes.notifications);
-                      },
-                    ),
-                  ),
-                  IconButton(
-                    icon: const Icon(
-                      Icons.local_offer_outlined,
-                      color: Colors.orange,
-                    ),
-                    onPressed: () {},
-                  ),
-                ],
-              ),
+              child: HomeSearchBar(),
             ),
             const SizedBox(height: 20),
             const Padding(
@@ -314,32 +228,7 @@ class HomeScreen extends ConsumerWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        onTap: (index) {
-          if (index == 3) {
-            Navigator.pushNamed(context, AppRoutes.account);
-          }
-          // You can handle other index navigations here as needed
-        },
-        selectedItemColor: Colors.green,
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.storefront), label: 'Home'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag),
-            label: 'My Order',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person_outline),
-            label: 'Account',
-          ),
-        ],
-      ),
+      bottomNavigationBar: const MainBottomNavigationBar(currentIndex: 0),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/notification_appbar.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import '../services/api_service.dart';
@@ -9,7 +10,7 @@ class NotificationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Notifications")),
+      appBar: const NotificationAppBar(),
       body: FutureBuilder<List<NotificationModel>>(
         future: ApiService.fetchNotifications(),
         builder: (context, snapshot) {
