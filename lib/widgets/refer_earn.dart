@@ -5,8 +5,11 @@ class ReferEarnCard extends StatelessWidget {
   final VoidCallback onTap;
   final String imagePath;
 
-  const ReferEarnCard({Key? key, required this.onTap, required this.imagePath})
-    : super(key: key);
+  const ReferEarnCard({
+    super.key,
+    required this.onTap,
+    required this.imagePath,
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import '../models/notification_model.dart';
 
@@ -10,14 +11,7 @@ class ApiService {
     final response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> jsonBody = json.decode(response.body);
-      final List<dynamic> data = jsonBody['data'];
-
-      return data
-          .map(
-            (item) => NotificationModel.fromJson(item as Map<String, dynamic>),
-          )
-          .toList();
+      return compute(parseNotifications, response.body);
     } else {
       throw Exception('Failed to load notifications');
     }
