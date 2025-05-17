@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:timeago/timeago.dart' as timeago;
 import '../services/api_service.dart';
 import '../models/notification_model.dart';
 
@@ -33,8 +34,9 @@ class NotificationsScreen extends StatelessWidget {
                           const Icon(Icons.notifications),
                 ),
                 title: Text(item.title),
-                subtitle: Text(item.body),
-                trailing: Text(item.timestamp.split('T').first),
+                subtitle: Text(
+                  '${item.body}\n${timeago.format(DateTime.parse(item.timestamp))}',
+                ),
               );
             },
           );

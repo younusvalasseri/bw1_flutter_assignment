@@ -1,40 +1,69 @@
-import 'package:bw1_flutter_assignment/screens/account_page.dart';
-import 'package:bw1_flutter_assignment/screens/notifications_screen.dart';
+import 'package:bw1_flutter_assignment/routes/app_routes.dart';
 import 'package:bw1_flutter_assignment/widgets/category_tile.dart';
 import 'package:bw1_flutter_assignment/widgets/craze_deals.dart';
 import 'package:bw1_flutter_assignment/widgets/horizontal_store_list.dart';
+import 'package:bw1_flutter_assignment/widgets/location_provider.dart';
 import 'package:bw1_flutter_assignment/widgets/nearby_stores.dart';
 import 'package:bw1_flutter_assignment/widgets/promo_banner.dart';
 import 'package:bw1_flutter_assignment/widgets/refer_earn.dart';
 import 'package:bw1_flutter_assignment/widgets/section_title.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final locationAsyncValue = ref.watch(locationProvider);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.white,
         elevation: 0,
+        automaticallyImplyLeading: false,
         title: Row(
           children: [
             const Icon(Icons.location_on, color: Color(0xFF3CE27E)),
             const SizedBox(width: 5),
-            const Text(
-              "ABCD, New Delhi",
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+
+            locationAsyncValue.when(
+              data:
+                  (location) => Text(
+                    location,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+              loading:
+                  () => const Text(
+                    "Fetching location...",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
+              error:
+                  (err, _) => const Text(
+                    "Location error",
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  ),
             ),
-            const Icon(Icons.keyboard_arrow_down, color: Colors.black),
+            IconButton(
+              icon: const Icon(
+                Icons.keyboard_arrow_down_outlined,
+                color: Color(0xFF3CE27E),
+              ),
+              onPressed: () {},
+            ),
           ],
         ),
-        automaticallyImplyLeading: false,
       ),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,12 +104,7 @@ class HomeScreen extends StatelessWidget {
                         color: Colors.red,
                       ),
                       onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => const NotificationsScreen(),
-                          ),
-                        );
+                        Navigator.pushNamed(context, AppRoutes.notifications);
                       },
                     ),
                   ),
@@ -294,10 +318,7 @@ class HomeScreen extends StatelessWidget {
         currentIndex: 0,
         onTap: (index) {
           if (index == 3) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_) => const AccountPage()),
-            );
+            Navigator.pushNamed(context, AppRoutes.account);
           }
           // You can handle other index navigations here as needed
         },
