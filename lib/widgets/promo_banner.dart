@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
 class PromoBanner extends StatelessWidget {
@@ -35,7 +36,7 @@ class PromoBanner extends StatelessWidget {
                   Text(
                     title,
                     style: const TextStyle(
-                      color: Colors.white,
+                      color: kWhitColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                       height: 1.4,
@@ -47,8 +48,8 @@ class PromoBanner extends StatelessWidget {
                       onPressed: () {},
                       style: TextButton.styleFrom(
                         minimumSize: const Size(200, 30),
-                        backgroundColor: Colors.orange,
-                        foregroundColor: Colors.white,
+                        backgroundColor: kOrange,
+                        foregroundColor: kWhitColor,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(4), // Rectangular
                         ),

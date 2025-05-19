@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import '../routes/app_routes.dart';
 
@@ -26,8 +27,8 @@ class MainBottomNavigationBar extends StatelessWidget {
             break;
         }
       },
-      selectedItemColor: Colors.green,
-      unselectedItemColor: Colors.grey,
+      selectedItemColor: kDarkGreen,
+      unselectedItemColor: kDarkGrey,
       items: const [
         BottomNavigationBarItem(icon: Icon(Icons.storefront), label: 'Home'),
         BottomNavigationBarItem(

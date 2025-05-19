@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -18,16 +19,13 @@ class SectionTitle extends StatelessWidget {
               textStyle: const TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w600,
-                color: Colors.black87,
+                color: kMidBlack,
               ),
             ),
           ),
           Text(
             "See all",
-            style: TextStyle(
-              color: Colors.green.shade600,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(color: kMidGreen, fontWeight: FontWeight.bold),
           ),
         ],
       ),

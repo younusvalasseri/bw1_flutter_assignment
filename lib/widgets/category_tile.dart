@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -23,11 +24,11 @@ class CategoryTile extends StatelessWidget {
               height: 75,
               width: 75,
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: kWhitColor,
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black12,
+                    color: kLightGrey,
                     blurRadius: 4,
                     offset: Offset(2, 2),
                   ),
@@ -59,13 +60,13 @@ class CategoryTile extends StatelessWidget {
                   width: 45,
                   padding: const EdgeInsets.all(2),
                   decoration: BoxDecoration(
-                    color: Colors.purple,
+                    color: kPurple,
                     borderRadius: BorderRadius.circular(4),
                   ),
                   child: Text(
                     textAlign: TextAlign.center,
                     discount!,
-                    style: const TextStyle(color: Colors.white, fontSize: 10),
+                    style: const TextStyle(color: kWhitColor, fontSize: 10),
                   ),
                 ),
               ),
@@ -79,7 +80,7 @@ class CategoryTile extends StatelessWidget {
             textStyle: const TextStyle(
               fontSize: 15,
               fontWeight: FontWeight.w600,
-              color: Colors.black87,
+              color: kMidBlack,
             ),
           ),
         ),

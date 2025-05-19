@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
 class StoreCard extends StatelessWidget {
@@ -10,7 +11,7 @@ class StoreCard extends StatelessWidget {
       margin: const EdgeInsets.only(right: 10),
       padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        border: Border.all(color: Colors.grey.shade200),
+        border: Border.all(color: kLightGrey),
         borderRadius: BorderRadius.circular(10),
       ),
       width: 200,
@@ -22,7 +23,7 @@ class StoreCard extends StatelessWidget {
               Container(
                 height: 40,
                 width: 40,
-                color: Colors.grey[300],
+                color: kLightGrey,
                 child:
                     iconPath != null && iconPath!.isNotEmpty
                         ? Image.asset(iconPath!, fit: BoxFit.cover)
@@ -50,14 +51,11 @@ class StoreCard extends StatelessWidget {
           const SizedBox(height: 5),
           Row(
             children: const [
-              Icon(Icons.star, color: Colors.orange, size: 16),
+              Icon(Icons.star, color: kOrange, size: 16),
               SizedBox(width: 5),
               Text("4.1", style: TextStyle(fontSize: 12)),
               Spacer(),
-              Text(
-                "45 mins",
-                style: TextStyle(fontSize: 12, color: Colors.orange),
-              ),
+              Text("45 mins", style: TextStyle(fontSize: 12, color: kOrange)),
             ],
           ),
         ],

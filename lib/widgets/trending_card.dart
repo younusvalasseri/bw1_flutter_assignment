@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -21,7 +22,7 @@ class TrendingCard extends StatelessWidget {
               Container(
                 height: 70,
                 width: 60,
-                color: Colors.grey[300],
+                color: kLightGrey,
                 child:
                     iconPath != null && iconPath!.isNotEmpty
                         ? Image.asset(iconPath!, fit: BoxFit.cover)
@@ -38,7 +39,7 @@ class TrendingCard extends StatelessWidget {
                         textStyle: TextStyle(
                           fontSize: 17,
                           fontWeight: FontWeight.w600,
-                          color: Colors.black87,
+                          color: kMidBlack,
                         ),
                       ),
                     ),

@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -7,11 +8,11 @@ class CrazeDealsCard extends StatelessWidget {
   final VoidCallback onTap;
 
   const CrazeDealsCard({
-    Key? key,
+    super.key,
     required this.title,
     required this.imagePath,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class CrazeDealsCard extends StatelessWidget {
         margin: const EdgeInsets.only(right: 16),
         padding: const EdgeInsets.only(left: 25),
         decoration: BoxDecoration(
-          color: Colors.black,
+          color: kBlack,
           borderRadius: BorderRadius.circular(16),
         ),
         child: Stack(
@@ -38,7 +39,7 @@ class CrazeDealsCard extends StatelessWidget {
                     textStyle: const TextStyle(
                       fontSize: 22,
                       fontWeight: FontWeight.w600,
-                      color: Colors.white,
+                      color: kWhitColor,
                     ),
                   ),
                 ),
@@ -48,13 +49,13 @@ class CrazeDealsCard extends StatelessWidget {
                     Text(
                       "Explore",
                       style: TextStyle(
-                        color: Colors.orange,
+                        color: kOrange,
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
                     SizedBox(width: 4),
-                    Icon(Icons.arrow_forward, color: Colors.orange, size: 16),
+                    Icon(Icons.arrow_forward, color: kOrange, size: 16),
                   ],
                 ),
               ],

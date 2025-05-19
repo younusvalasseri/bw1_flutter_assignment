@@ -1,9 +1,10 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AccountPage extends StatelessWidget {
   const AccountPage({super.key});
-
+  //privacy policy page
   Future<void> _launchPrivacyPolicy() async {
     final Uri url = Uri.parse(
       'https://www.termsfeed.com/live/7d0ea6df-75e9-402b-af09-0035d341d274',
@@ -13,6 +14,7 @@ class AccountPage extends StatelessWidget {
     }
   }
 
+  //Contact page
   Future<void> _launchHelpSupport() async {
     final Uri url = Uri.parse(
       'https://younusvalasseri.github.io/Personal-Website/index.html#contact-section',
@@ -27,16 +29,17 @@ class AccountPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Account'),
-        backgroundColor: Colors.green,
+        backgroundColor: kDarkGreen,
       ),
       body: ListView(
         children: [
           const SizedBox(height: 20),
+          //Profile section
           ListTile(
             leading: const CircleAvatar(
               radius: 30,
-              backgroundColor: Colors.green,
-              child: Icon(Icons.person, color: Colors.white, size: 30),
+              backgroundColor: kDarkGreen,
+              child: Icon(Icons.person, color: kWhitColor, size: 30),
             ),
             title: const Text(
               'Younus Valasseri',
@@ -44,22 +47,24 @@ class AccountPage extends StatelessWidget {
             ),
             subtitle: const Text('younusv@gmail.com'),
             trailing: IconButton(
-              icon: const Icon(Icons.edit, color: Colors.grey),
+              icon: const Icon(Icons.edit, color: kDarkGrey),
               onPressed: () {},
             ),
           ),
           const Divider(),
-
+          //Privacy policy section
           ListTile(
             leading: const Icon(Icons.lock_outline),
             title: const Text('Privacy Policy'),
             onTap: _launchPrivacyPolicy,
           ),
+          //contact me section
           ListTile(
             leading: const Icon(Icons.help_outline),
             title: const Text('Help & Support'),
             onTap: _launchHelpSupport,
           ),
+          //Logout icon
           ListTile(
             leading: const Icon(Icons.logout),
             title: const Text('Logout'),

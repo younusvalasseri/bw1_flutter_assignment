@@ -1,5 +1,6 @@
 // lib/widgets/notification_appbar.dart
 
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
 class NotificationAppBar extends StatelessWidget
@@ -11,7 +12,7 @@ class NotificationAppBar extends StatelessWidget
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: kWhitColor,
       elevation: 0,
       leading: Padding(
         padding: const EdgeInsets.only(left: 16.0),
@@ -21,16 +22,16 @@ class NotificationAppBar extends StatelessWidget
           child: Container(
             padding: const EdgeInsets.all(2),
             decoration: const BoxDecoration(
-              color: Color(0xFF3CE27E),
+              color: kGreenColor,
               shape: BoxShape.circle,
             ),
-            child: const Icon(Icons.arrow_back, color: Colors.white, size: 30),
+            child: const Icon(Icons.arrow_back, color: kWhitColor, size: 30),
           ),
         ),
       ),
       title: const Text(
         "Notifications",
-        style: TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+        style: TextStyle(color: kBlack, fontWeight: FontWeight.w600),
       ),
     );
   }

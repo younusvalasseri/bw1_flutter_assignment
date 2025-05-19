@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
 class NotificationTile extends StatelessWidget {
@@ -16,7 +17,7 @@ class NotificationTile extends StatelessWidget {
       clipBehavior: Clip.none,
       children: [
         IconButton(
-          icon: const Icon(Icons.notifications_none, color: Colors.red),
+          icon: const Icon(Icons.notifications_none, color: kRed),
           onPressed: onTap,
         ),
         if (notificationCount > 0)
@@ -26,7 +27,7 @@ class NotificationTile extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(4),
               decoration: const BoxDecoration(
-                color: Colors.red,
+                color: kRed,
                 shape: BoxShape.circle,
               ),
               constraints: const BoxConstraints(minWidth: 20, minHeight: 20),
@@ -34,7 +35,7 @@ class NotificationTile extends StatelessWidget {
                 child: Text(
                   '$notificationCount',
                   style: const TextStyle(
-                    color: Colors.white,
+                    color: kWhitColor,
                     fontSize: 10,
                     fontWeight: FontWeight.bold,
                   ),

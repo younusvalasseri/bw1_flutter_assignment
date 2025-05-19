@@ -1,3 +1,4 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 
 class NearbyStoreCard extends StatelessWidget {
@@ -33,7 +34,7 @@ class NearbyStoreCard extends StatelessWidget {
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(12),
-        color: Colors.white,
+        color: kWhitColor,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,7 +76,7 @@ class NearbyStoreCard extends StatelessWidget {
                             cuisine,
                             style: const TextStyle(
                               fontSize: 14,
-                              color: Colors.black54,
+                              color: kDarkGrey,
                             ),
                           ),
                           const SizedBox(height: 2),
@@ -83,7 +84,7 @@ class NearbyStoreCard extends StatelessWidget {
                             '$address  |  ${distanceKm.toStringAsFixed(1)} kms',
                             style: const TextStyle(
                               fontSize: 12,
-                              color: Colors.black45,
+                              color: kDarkGrey,
                             ),
                           ),
                           if (badgeLabel.isNotEmpty) ...[
@@ -94,14 +95,14 @@ class NearbyStoreCard extends StatelessWidget {
                                 vertical: 2,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.grey.shade200,
+                                color: kLightGrey,
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
                                 badgeLabel,
                                 style: const TextStyle(
                                   fontSize: 10,
-                                  color: Colors.black54,
+                                  color: kMidBlack,
                                 ),
                               ),
                             ),
@@ -122,7 +123,7 @@ class NearbyStoreCard extends StatelessWidget {
                               const Icon(
                                 Icons.star,
                                 size: 16,
-                                color: Colors.black87,
+                                color: kMidBlack,
                               ),
                               const SizedBox(width: 4),
                               Text(
@@ -136,7 +137,7 @@ class NearbyStoreCard extends StatelessWidget {
                             deliveryTime,
                             style: const TextStyle(
                               fontSize: 14,
-                              color: Colors.orange,
+                              color: kOrange,
                               fontWeight: FontWeight.w500,
                             ),
                           ),
@@ -155,7 +156,7 @@ class NearbyStoreCard extends StatelessWidget {
                       const Icon(
                         Icons.percent_outlined,
                         size: 16,
-                        color: Colors.redAccent,
+                        color: kLightRed,
                       ),
                       const SizedBox(width: 4),
                       Text(promoText, style: const TextStyle(fontSize: 10)),
@@ -166,7 +167,7 @@ class NearbyStoreCard extends StatelessWidget {
                       const Icon(
                         Icons.inventory_2,
                         size: 16,
-                        color: Colors.green,
+                        color: kDarkGreen,
                       ),
                       const SizedBox(width: 4),
                       Text(itemsText, style: const TextStyle(fontSize: 10)),

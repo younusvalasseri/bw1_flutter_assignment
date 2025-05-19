@@ -1,8 +1,6 @@
+import 'package:bw1_flutter_assignment/widgets/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:badges/badges.dart' as badges;
-import 'package:lucide_icons/lucide_icons.dart';
-import '../routes/app_routes.dart';
 import 'location_provider.dart';
 
 class MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
@@ -13,12 +11,12 @@ class MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
     final locationAsyncValue = ref.watch(locationProvider);
 
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: kWhitColor,
       elevation: 0,
       automaticallyImplyLeading: false,
       title: Row(
         children: [
-          const Icon(Icons.location_on, color: Color(0xFF3CE27E)),
+          const Icon(Icons.location_on, color: kGreenColor),
           const SizedBox(width: 5),
           locationAsyncValue.when(
             data:
@@ -46,7 +44,7 @@ class MainAppBar extends ConsumerWidget implements PreferredSizeWidget {
           IconButton(
             icon: const Icon(
               Icons.keyboard_arrow_down_outlined,
-              color: Color(0xFF3CE27E),
+              color: kGreenColor,
             ),
             onPressed: () {},
           ),
