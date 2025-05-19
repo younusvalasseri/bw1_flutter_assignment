@@ -33,8 +33,9 @@ class HomeSearchBar extends StatelessWidget {
             '2',
             style: TextStyle(color: kWhitColor, fontSize: 10),
           ),
-          position: badges.BadgePosition.topEnd(top: 3, end: 6),
+          position: badges.BadgePosition.topEnd(top: 6, end: 15),
           child: IconButton(
+            iconSize: 40,
             icon: const Icon(Icons.notifications_none_outlined, color: kRed),
             onPressed: () {
               Navigator.pushNamed(context, AppRoutes.notifications);
@@ -42,6 +43,7 @@ class HomeSearchBar extends StatelessWidget {
           ),
         ),
         IconButton(
+          iconSize: 30,
           icon: const Icon(Icons.local_offer_outlined, color: kOrange),
           onPressed: () {},
         ),
